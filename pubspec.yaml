@@ -1,0 +1,20 @@
+name: storyboard
+description: Faster iterative development of Flutter user interfaces by isolating widgets from your app.
+version: 0.0.1
+author: Mike Hoolehan <mike@hoolehan.com>
+homepage: https://ilikerobots.github.io/
+
+dependencies:
+  flutter:
+    sdk: flutter
+  recase: ^1.0.0+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+environment:
+  sdk: ">=2.0.0-dev.28.0 <3.0.0"
+  flutter: ">=0.1.4 <2.0.0"
+
