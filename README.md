@@ -27,9 +27,9 @@ At a minimum, the abstract ```storyContent``` getter, which provides the widgets
 The ```build``` method itself can also be overridden to completely customize the display of the Story.
 
 
-## Building a Storybook
+## Building a Storyboard
 
-A storybook is little more than a collection of stories.  
+A storyboard is little more than a collection of stories.  
 ```dart
 import 'package:flutter/material.dart';
 import 'package:storyboard/storyboard.dart';
@@ -37,7 +37,7 @@ import 'stories/contacts_story.dart';
 
 void main() {
   runApp(new MaterialApp(
-      home: new Storybook([
+      home: new Storyboard([
         new ContactsListStory(),
         new ContactsCardStory(contact: new Contact("alice")),
         new ContactsCardStory(contact: new Contact("bob")),
@@ -60,8 +60,6 @@ void main() {
 ```
 
 
-## Getting Started
+## Further reading
 
-For help getting started with Flutter, view our online [documentation](https://flutter.io/).
-
-For help on editing package code, view the [documentation](https://flutter.io/developing-packages/).
+See the article [Storyboarding Widgets in Flutter](https://proandroiddev.com/storyboarding-widgets-in-flutter-96d79d9a72f0).

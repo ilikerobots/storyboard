@@ -1,6 +1,6 @@
 name: storyboard
 description: Faster iterative development of Flutter user interfaces by isolating widgets from your app.
-version: 0.0.2
+version: 0.0.3
 author: Mike Hoolehan <mike@hoolehan.com>
 homepage: https://github.com/ilikerobots/storyboard
 
