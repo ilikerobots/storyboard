@@ -7,7 +7,7 @@ homepage: https://github.com/ilikerobots/storyboard
 dependencies:
   flutter:
     sdk: flutter
-  recase: ^1.0.0+1
+  recase: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -17,4 +17,3 @@ dev_dependencies:
 environment:
   sdk: ">=2.0.0-dev.28.0 <3.0.0"
   flutter: ">=0.1.4 <2.0.0"
-

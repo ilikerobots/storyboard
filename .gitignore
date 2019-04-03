@@ -8,3 +8,5 @@ packages
 pubspec.lock
 ios/Flutter/Generated*
 ios/Runner/Generated*
+.vscode/launch.json
+android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
