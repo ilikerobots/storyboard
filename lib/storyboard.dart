@@ -18,9 +18,9 @@ class StoryboardApp extends MaterialApp {
   ///
   ///  * [stories] defines the list of stories that will be combined into
   ///  a storyboard.
-  StoryboardApp(List<Story> stories)
+  StoryboardApp(List<Story> stories, {ThemeData theme})
       : assert(stories != null),
-        super(home: new Storyboard(stories));
+        super(home: new Storyboard(stories), theme: theme);
 }
 
 /// A Storyboard is a widget displaying a collection of [Story] widgets.
