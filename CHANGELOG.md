@@ -1,4 +1,4 @@
-## [0.0.4] - 27 Jan 2020
+## [0.0.5] - 27 Jan 2020
 * Forward theme to storyboard - thanks @heralight
 
 ## [0.0.2] - 15 Mar 2018
