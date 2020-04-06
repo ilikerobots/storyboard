@@ -8,9 +8,9 @@ import 'package:recase/recase.dart';
 /// ## Sample code
 ///
 /// ```dart
-/// runApp(new StoryboardApp([
-///     new MyFancyWidgetStory(),
-///     new MyBasicWidgetStory(),
+/// runApp(StoryboardApp([
+///     MyFancyWidgetStory(),
+///     MyBasicWidgetStory(),
 /// ]));
 /// ```
 class StoryboardApp extends MaterialApp {
@@ -20,7 +20,7 @@ class StoryboardApp extends MaterialApp {
   ///  a storyboard.
   StoryboardApp(List<Story> stories, {ThemeData theme})
       : assert(stories != null),
-        super(home: new Storyboard(stories), theme: theme);
+        super(home: Storyboard(stories), theme: theme);
 }
 
 /// A Storyboard is a widget displaying a collection of [Story] widgets.
@@ -35,10 +35,10 @@ class StoryboardApp extends MaterialApp {
 ///
 /// ```dart
 /// runApp(
-///     new MaterialApp(
-///         home: new Storyboard([
-///             new MyFancyWidgetStory(),
-///             new MyBasicWidgetStory(),
+///     MaterialApp(
+///         home: Storyboard([
+///             MyFancyWidgetStory(),
+///             MyBasicWidgetStory(),
 ///         ])));
 /// ```
 class Storyboard extends StatelessWidget {
@@ -52,9 +52,9 @@ class Storyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(title: new Text(_kStoryBoardTitle)),
-        body: new ListView.builder(
+    return Scaffold(
+        appBar: AppBar(title: Text(_kStoryBoardTitle)),
+        body: ListView.builder(
           itemBuilder: (BuildContext context, int index) => stories[index],
           itemCount: stories.length,
         ));
@@ -77,23 +77,22 @@ abstract class Story extends StatelessWidget {
 
   List<Widget> get storyContent;
 
-  String get title => new ReCase(runtimeType.toString()).titleCase;
+  String get title => ReCase(runtimeType.toString()).titleCase;
 
   bool get isFullScreen => false;
 
   Widget _widgetListItem(Widget w) =>
-      new Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        new Container(
-            padding: const EdgeInsets.symmetric(vertical: 8.0), child: w)
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Container(padding: const EdgeInsets.symmetric(vertical: 8.0), child: w)
       ]);
 
   Widget _widgetTileLauncher(Widget w, String title, BuildContext context) =>
-      new ListTile(
+      ListTile(
           leading: const Icon(Icons.launch),
-          title: new Text(title),
+          title: Text(title),
           onTap: () {
             Navigator.push(context,
-                new MaterialPageRoute<Null>(builder: (BuildContext context) {
+                MaterialPageRoute<Null>(builder: (BuildContext context) {
               return w;
             }));
           });
@@ -101,20 +100,20 @@ abstract class Story extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!isFullScreen) {
-      return new ExpansionTile(
+      return ExpansionTile(
         leading: const Icon(Icons.list),
-        key: new PageStorageKey<Story>(this),
-        title: new Text(title),
+        key: PageStorageKey<Story>(this),
+        title: Text(title),
         children: storyContent.map(_widgetListItem).toList(),
       );
     } else {
       if (storyContent.length == 1) {
         return _widgetTileLauncher(storyContent[0], title, context);
       } else {
-        return new ExpansionTile(
+        return ExpansionTile(
           leading: const Icon(Icons.fullscreen),
-          key: new PageStorageKey<Story>(this),
-          title: new Text(title),
+          key: PageStorageKey<Story>(this),
+          title: Text(title),
           children: storyContent
               .map((Widget w) => _widgetTileLauncher(w, title, context))
               .toList(),
