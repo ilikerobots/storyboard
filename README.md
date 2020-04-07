@@ -17,7 +17,7 @@ class ContactsListStory extends Story {
 
   @override
   List<Widget> get storyContent {
-    return [new ContactsList()];
+    return [ContactsList()];
   }
 }
 ```
@@ -36,12 +36,12 @@ import 'package:storyboard/storyboard.dart';
 import 'stories/contacts_story.dart';
 
 void main() {
-  runApp(new MaterialApp(
-      home: new Storyboard([
-        new ContactsListStory(),
-        new ContactsCardStory(contact: new Contact("alice")),
-        new ContactsCardStory(contact: new Contact("bob")),
-        new ContactsCardStory(contact: new Contact("charlie")),
+  runApp(MaterialApp(
+      home: Storyboard([
+        ContactsListStory(),
+        ContactsCardStory(contact: Contact("alice")),
+        ContactsCardStory(contact: Contact("bob")),
+        ContactsCardStory(contact: Contact("charlie")),
   ])));
 }
 ```
@@ -50,11 +50,11 @@ Or more simply, run the convenience ```StoryboardApp``` directly.
 
 ```dart
 void main() {
-  runApp(new StoryboardApp([
-    new ContactsListStory(),
-    new ContactsCardStory(contact: new Contact("alice")),
-    new ContactsCardStory(contact: new Contact("bob")),
-    new ContactsCardStory(contact: new Contact("charlie")),
+  runApp(StoryboardApp([
+    ContactsListStory(),
+    ContactsCardStory(contact: Contact("alice")),
+    ContactsCardStory(contact: Contact("bob")),
+    ContactsCardStory(contact: Contact("charlie")),
   ]));
 }
 ```
