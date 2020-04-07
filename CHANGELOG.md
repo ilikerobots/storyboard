@@ -1,3 +1,6 @@
+## [0.0.6] - 07 Apr 2020
+* Remove unnecessary new - thanks @MisterJimson
+
 ## [0.0.5] - 27 Jan 2020
 * Forward theme to storyboard - thanks @heralight
 
