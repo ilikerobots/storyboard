@@ -75,16 +75,23 @@ class Storyboard extends StatelessWidget {
 abstract class Story extends StatelessWidget {
   const Story({Key key}) : super(key: key);
 
-  List<Widget> get storyContent;
+  List<StoryEntry> get storyContent;
 
   String get title => ReCase(runtimeType.toString()).titleCase;
 
   bool get isFullScreen => false;
 
-  Widget _widgetListItem(Widget w) =>
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Container(padding: const EdgeInsets.symmetric(vertical: 8.0), child: w)
-      ]);
+  Widget _widgetListItem(Widget w, String title) => Padding(
+        padding: EdgeInsets.only(left: 8, right: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title),
+            Container(
+                padding: const EdgeInsets.symmetric(vertical: 8.0), child: w)
+          ],
+        ),
+      );
 
   Widget _widgetTileLauncher(Widget w, String title, BuildContext context) =>
       ListTile(
@@ -104,18 +111,22 @@ abstract class Story extends StatelessWidget {
         leading: const Icon(Icons.list),
         key: PageStorageKey<Story>(this),
         title: Text(title),
-        children: storyContent.map(_widgetListItem).toList(),
+        children: storyContent
+            .map((entry) => _widgetListItem(entry.widget, entry.description))
+            .toList(),
       );
     } else {
       if (storyContent.length == 1) {
-        return _widgetTileLauncher(storyContent[0], title, context);
+        return _widgetTileLauncher(
+            storyContent[0].widget, storyContent[0].description, context);
       } else {
         return ExpansionTile(
           leading: const Icon(Icons.fullscreen),
           key: PageStorageKey<Story>(this),
           title: Text(title),
           children: storyContent
-              .map((Widget w) => _widgetTileLauncher(w, title, context))
+              .map((entry) =>
+                  _widgetTileLauncher(entry.widget, entry.description, context))
               .toList(),
         );
       }
@@ -126,4 +137,10 @@ abstract class Story extends StatelessWidget {
 /// A convenience abstract class for implementing a full screen [Story].
 abstract class FullScreenStory extends Story {
   bool get isFullScreen => true;
+}
+
+class StoryEntry {
+  StoryEntry({@required this.widget, @required this.description});
+  final Widget widget;
+  final String description;
 }
