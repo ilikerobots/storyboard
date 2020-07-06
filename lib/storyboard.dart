@@ -95,7 +95,7 @@ abstract class Story extends StatelessWidget {
 
   Widget _widgetTileLauncher(Widget w, String title, BuildContext context) =>
       ListTile(
-          leading: const Icon(Icons.launch),
+          trailing: const Icon(Icons.chevron_right),
           title: Text(title),
           onTap: () {
             Navigator.push(context,
