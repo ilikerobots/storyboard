@@ -8,6 +8,17 @@ class IconFaceNatureStory extends Story {
       [const Icon(Icons.face), const Icon(Icons.nature)];
 }
 
+class IconFaceNatureWithParamsStory extends Story {
+  @override
+  List<Widget> get storyContent =>
+      [const Icon(Icons.face), const Icon(Icons.nature)];
+
+  @override
+  List<RenderParams> renderParams() {
+    return [RenderParams(MainAxisAlignment.start, EdgeInsets.all(10.0))];
+  }
+}
+
 class IconHomePhotostory extends Story {
   @override
   List<Widget> get storyContent =>
@@ -42,6 +53,19 @@ void main() {
 
   testWidgets('Single story test', (WidgetTester tester) async {
     await tester.pumpWidget(StoryboardApp([IconFaceNatureStory()]));
+    await tester.pump(); // triggers a frame
+
+    Finder expTileFinder = find.byType(ExpansionTile);
+    expect(expTileFinder, findsOneWidget);
+    expect(find.byType(ListTile), findsOneWidget);
+    await tester.tap(expTileFinder);
+    await tester.pump(); // start animation
+    expect(find.byIcon(Icons.face, skipOffstage: true), findsOneWidget);
+    expect(find.byIcon(Icons.nature, skipOffstage: true), findsOneWidget);
+  });
+
+  testWidgets('Single story test with Params', (WidgetTester tester) async {
+    await tester.pumpWidget(StoryboardApp([IconFaceNatureWithParamsStory()]));
     await tester.pump(); // triggers a frame
 
     Finder expTileFinder = find.byType(ExpansionTile);

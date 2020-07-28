@@ -61,6 +61,13 @@ class Storyboard extends StatelessWidget {
   }
 }
 
+class RenderParams {
+  final MainAxisAlignment horizontalAlignment;
+  final EdgeInsets padding;
+
+  RenderParams(this.horizontalAlignment, this.padding);
+}
+
 /// A Story widget is intended as a single "page" of a [Storyboard].  It is
 /// intended that authors write their own concrete implementations of Stories
 /// to include in a [Storyboard].
@@ -72,19 +79,29 @@ class Storyboard extends StatelessWidget {
 /// The story's Widget children are arranged as a series of [Row]s within an
 /// ExpansionTile, or if the widget is full screen, is displayed by navigating
 /// to a new route.
+///
+/// You can adjust how your widget is displayed inside of the [Row] by overriding
+/// the renderParams() method. In that case you have supply an array of the same
+/// size as storyContent. You may still supply nulls there for the rows which don't require
+/// any adjustments.
 abstract class Story extends StatelessWidget {
   const Story({Key key}) : super(key: key);
 
   List<Widget> get storyContent;
 
+  List<RenderParams> renderParams() => null;
+
   String get title => ReCase(runtimeType.toString()).titleCase;
 
   bool get isFullScreen => false;
 
-  Widget _widgetListItem(Widget w) =>
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Container(padding: const EdgeInsets.symmetric(vertical: 8.0), child: w)
-      ]);
+  Widget _widgetListItem(Widget w, RenderParams params) {
+    MainAxisAlignment alignment = params == null ? MainAxisAlignment.center : params.horizontalAlignment;
+    EdgeInsets padding = params == null ? const EdgeInsets.symmetric(vertical: 8.0) : params.padding;
+    return Row(mainAxisAlignment: alignment, children: [
+      Container(padding: padding, child: w)
+    ]);
+  }
 
   Widget _widgetTileLauncher(Widget w, String title, BuildContext context) =>
       ListTile(
@@ -99,12 +116,17 @@ abstract class Story extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<RenderParams> params = renderParams();
     if (!isFullScreen) {
       return ExpansionTile(
         leading: const Icon(Icons.list),
         key: PageStorageKey<Story>(this),
         title: Text(title),
-        children: storyContent.map(_widgetListItem).toList(),
+        children: storyContent.asMap().entries.map((entry) {
+          int idx = entry.key;
+          Widget w = entry.value;
+          return _widgetListItem(w, params == null ? null : params[idx]);
+        }).toList(),
       );
     } else {
       if (storyContent.length == 1) {
