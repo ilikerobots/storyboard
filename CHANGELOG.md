@@ -1,3 +1,6 @@
+## [0.0.7] - 17 Aug 2020
+* expose widgetListItem for override - thanks @cmaster11 and @vlivanov
+
 ## [0.0.6] - 07 Apr 2020
 * Remove unnecessary new - thanks @MisterJimson
 
