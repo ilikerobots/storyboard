@@ -81,7 +81,7 @@ abstract class Story extends StatelessWidget {
 
   bool get isFullScreen => false;
 
-  Widget _widgetListItem(Widget w) =>
+  Widget widgetListItem(Widget w) =>
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Container(padding: const EdgeInsets.symmetric(vertical: 8.0), child: w)
       ]);
@@ -104,7 +104,7 @@ abstract class Story extends StatelessWidget {
         leading: const Icon(Icons.list),
         key: PageStorageKey<Story>(this),
         title: Text(title),
-        children: storyContent.map(_widgetListItem).toList(),
+        children: storyContent.map(widgetListItem).toList(),
       );
     } else {
       if (storyContent.length == 1) {
