@@ -18,9 +18,8 @@ class StoryboardApp extends MaterialApp {
   ///
   ///  * [stories] defines the list of stories that will be combined into
   ///  a storyboard.
-  StoryboardApp(List<Story> stories, {ThemeData theme})
-      : assert(stories != null),
-        super(home: Storyboard(stories), theme: theme);
+  StoryboardApp(List<Story> stories, {ThemeData? theme})
+      : super(home: Storyboard(stories), theme: theme);
 }
 
 /// A Storyboard is a widget displaying a collection of [Story] widgets.
@@ -73,7 +72,7 @@ class Storyboard extends StatelessWidget {
 /// ExpansionTile, or if the widget is full screen, is displayed by navigating
 /// to a new route.
 abstract class Story extends StatelessWidget {
-  const Story({Key key}) : super(key: key);
+  const Story({Key? key}) : super(key: key);
 
   List<Widget> get storyContent;
 

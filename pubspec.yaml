@@ -1,12 +1,12 @@
 name: storyboard
 description: Faster iterative development of Flutter user interfaces by isolating widgets from your app.
-version: 0.0.7
+version: 1.0.0
 homepage: https://github.com/ilikerobots/storyboard
 
 dependencies:
   flutter:
     sdk: flutter
-  recase: ^2.0.1
+  recase: ^4.0.0-nullsafety.0
 
 dev_dependencies:
   flutter_test:
@@ -14,5 +14,6 @@ dev_dependencies:
 
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
-  flutter: ">=0.1.4 <2.0.0"
+  sdk: ">=2.12.0 <3.0.0"
+
+flutter:

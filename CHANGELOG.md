@@ -1,3 +1,6 @@
+## [1.0.0] - 17 Aug 2020
+* Flutter 2 incl null safety
+
 ## [0.0.7] - 17 Aug 2020
 * expose widgetListItem for override - thanks @cmaster11 and @vlivanov
 
